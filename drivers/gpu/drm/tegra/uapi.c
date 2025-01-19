@@ -107,8 +107,12 @@ int tegra_drm_ioctl_channel_open(struct drm_device *drm, void *data, struct drm_
 	}
 
 	/* Only allocate context if the engine supports context isolation. */
-	if (device_iommu_mapped(client->base.dev) && client->ops->can_use_memory_ctx) {
+	// TODO: review, maybe this modification is not needed
+	//if (device_iommu_mapped(client->base.dev) && client->ops->can_use_memory_ctx) {
+	if (client->ops->can_use_memory_ctx) {
 		bool supported;
+
+		printk(KERN_INFO "%s, d:%d,  can_use_memory_ctx", __FUNCTION__, __LINE__);
 
 		err = client->ops->can_use_memory_ctx(client, &supported);
 		if (err)
@@ -131,6 +135,11 @@ int tegra_drm_ioctl_channel_open(struct drm_device *drm, void *data, struct drm_
 			}
 		}
 	}
+	else{
+		printk(KERN_INFO "%s, d:%d, no iommu", __FUNCTION__, __LINE__);
+	}
+
+
 
 	err = xa_alloc(&fpriv->contexts, &args->context, context, XA_LIMIT(1, U32_MAX),
 		       GFP_KERNEL);

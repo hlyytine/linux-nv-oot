@@ -214,8 +214,16 @@ static int submit_copy_gather_data(struct gather_bo **pbo, struct device *dev,
 	kref_init(&bo->ref);
 	bo->dev = dev;
 
-	bo->gather_data = dma_alloc_attrs(dev, copy_len, &bo->gather_data_dma,
-					  GFP_KERNEL | __GFP_NOWARN, 0);
+	// TODO: check if needed
+	if(copy_len < 0x2000){
+		copy_len = 0x2000;
+	}
+
+	//bo->gather_data = dma_alloc_attrs(dev, copy_len, &bo->gather_data_dma,
+	//				  GFP_KERNEL | GFP_DMA, DMA_ATTR_WRITE_COMBINE);
+
+	bo->gather_data = dma_alloc_wc(dev, copy_len, &bo->gather_data_dma,
+					  GFP_KERNEL | GFP_DMA);
 	if (!bo->gather_data) {
 		SUBMIT_ERR(context, "failed to allocate memory for gather data");
 		kfree(bo);
@@ -568,8 +576,9 @@ static int submit_init_profiling(struct tegra_drm_context *context,
 	if (!has_timestamping)
 		return 0;
 
-	job_data->timestamps.virt =
-		dma_alloc_coherent(mem_dev, 256, &job_data->timestamps.iova, GFP_KERNEL);
+	job_data->timestamps.virt = 
+		dma_alloc_wc(mem_dev, 0x2000, &job_data->timestamps.iova, GFP_KERNEL | GFP_DMA);
+
 	if (!job_data->timestamps.virt)
 		return -ENOMEM;
 

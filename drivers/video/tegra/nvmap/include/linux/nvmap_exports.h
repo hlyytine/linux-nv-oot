@@ -10,5 +10,8 @@ void *nvmap_dma_alloc_attrs(struct device *dev, size_t size,
 			    unsigned long attrs);
 void nvmap_dma_free_attrs(struct device *dev, size_t size, void *cpu_addr,
 			  dma_addr_t dma_handle, unsigned long attrs);
+int nvmap_dma_declare_coherent_memory(struct device *dev, phys_addr_t phys_addr,
+			dma_addr_t device_addr, size_t size, int flags, bool is_gpu,
+			u32 granule_size);
 extern struct device tegra_vpr_dev;
 #endif /* __NVMAP_EXPORTS_H */

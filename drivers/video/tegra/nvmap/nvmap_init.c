@@ -742,6 +742,13 @@ int nvmap_dma_declare_coherent_memory(struct device *dev, phys_addr_t phys_addr,
 	struct dma_coherent_mem_replica *mem;
 	int ret;
 
+	printk(KERN_INFO "%s\n", __FUNCTION__);
+	printk(KERN_INFO "%s: dev_name(dev):  %s\n", __FUNCTION__, dev_name(dev));
+	printk(KERN_INFO "%s, phys_addr:      0x%016llX", __FUNCTION__, (u64)phys_addr);
+	printk(KERN_INFO "%s, device_addr:    0x%016llX", __FUNCTION__, (u64)device_addr);
+	printk(KERN_INFO "%s, size:           0x%016llX", __FUNCTION__, (u64)size);
+	printk(KERN_INFO "%s, flags:          0x%016llX", __FUNCTION__, (u64)flags);
+
 	ret = nvmap_dma_init_coherent_memory(phys_addr, device_addr, size, flags, &mem,
 					     is_gpu, granule_size);
 	if (ret)
@@ -752,6 +759,7 @@ int nvmap_dma_declare_coherent_memory(struct device *dev, phys_addr_t phys_addr,
 		nvmap_dma_release_coherent_memory(mem);
 	return ret;
 }
+EXPORT_SYMBOL(nvmap_dma_declare_coherent_memory);
 #endif /* LINUX_VERSION_CODE */
 
 static int __init nvmap_co_device_init(struct reserved_mem *rmem,

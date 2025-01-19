@@ -379,6 +379,33 @@ static int __init tegra_mc_utils_init_t23x(void)
 		ch_num = get_dram_dt_prop(np, "dram_channels");
 	}
 
+	pr_info("mc-utils: Before");
+	pr_info("mc-utils: rank:   %u", rank);
+	pr_info("mc-utils: ecc:    %u", ecc);
+	pr_info("mc-utils: dram:   %u", dram);
+	pr_info("mc-utils: ch_num: %u", ch_num);
+
+	// In host
+	// [   13.416296] mc-utils: !is_tegra_hypervisor_mode
+	// [   13.416315] mc-utils: rank: 1
+	// [   13.417948] mc-utils: ecc: 0
+	// [   13.417949] mc-utils: dram: 1
+	// [   13.417951] mc-utils: ch_num: 8
+
+
+	rank = 1;
+	ecc = 0;
+	dram = 1;
+	ch_num = 8;
+
+
+	pr_info("mc-utils: After");
+	pr_info("mc-utils: rank:   %u", rank);
+	pr_info("mc-utils: ecc:    %u", ecc);
+	pr_info("mc-utils: dram:   %u", dram);
+	pr_info("mc-utils: ch_num: %u", ch_num);
+	
+
 	emc_param.ecc = ecc;
 	emc_param.rank = rank;
 	emc_param.dram = dram;
