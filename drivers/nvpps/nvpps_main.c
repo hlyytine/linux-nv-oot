@@ -1121,7 +1121,7 @@ error_ret:
 }
 
 
-static int nvpps_remove(struct platform_device *pdev)
+static void nvpps_remove(struct platform_device *pdev)
 {
 	struct nvpps_device_data	*pdev_data = platform_get_drvdata(pdev);
 
@@ -1152,7 +1152,6 @@ static int nvpps_remove(struct platform_device *pdev)
 	class_destroy(s_nvpps_class);
 	unregister_chrdev_region(s_nvpps_devt, MAX_NVPPS_SOURCES);
 #endif /* !NVPPS_NO_DT */
-	return 0;
 }
 
 

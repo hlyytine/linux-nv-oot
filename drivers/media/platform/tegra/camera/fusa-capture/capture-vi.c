@@ -1700,7 +1700,7 @@ cleanup:
 	return err;
 }
 
-static int capture_vi_remove(struct platform_device *pdev)
+static void capture_vi_remove(struct platform_device *pdev)
 {
 	struct tegra_capture_vi_data *info;
 	uint32_t ii;
@@ -1716,8 +1716,6 @@ static int capture_vi_remove(struct platform_device *pdev)
 	vi_channel_drv_unregister(&pdev->dev);
 	tegra_vi_media_controller_cleanup(&info->vi_common.mc_vi);
 	vi_channel_drv_exit();
-
-	return 0;
 }
 
 static const struct of_device_id capture_vi_of_match[] = {

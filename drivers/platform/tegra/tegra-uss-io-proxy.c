@@ -489,11 +489,10 @@ static void tegra_uss_reset(struct platform_device *pdev)
 
 }
 
-static int tegra_uss_io_proxy_remove(struct platform_device *pdev)
+static void tegra_uss_io_proxy_remove(struct platform_device *pdev)
 {
 	tegra_uss_remove_dev_attrs(pdev);
 	tegra_uss_reset(pdev);
-	return 0;
 }
 
 static struct platform_driver tegra_uss_io_proxy_driver = {

@@ -268,7 +268,7 @@ err_driver_init:
 	return err;
 }
 
-static int tegra_dce_remove(struct platform_device *pdev)
+static void tegra_dce_remove(struct platform_device *pdev)
 {
 	/* TODO */
 	struct tegra_dce *d =
@@ -280,7 +280,6 @@ static int tegra_dce_remove(struct platform_device *pdev)
 
 	dce_set_irqs(pdev, false);
 	dce_driver_deinit(d);
-	return 0;
 }
 
 #ifdef CONFIG_PM

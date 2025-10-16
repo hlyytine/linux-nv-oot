@@ -1465,7 +1465,7 @@ fail:
 	return ret;
 }
 
-static int tegra_hv_vblk_remove(struct platform_device *pdev)
+static void tegra_hv_vblk_remove(struct platform_device *pdev)
 {
 	struct vblk_dev *vblkdev = platform_get_drvdata(pdev);
 
@@ -1494,8 +1494,6 @@ static int tegra_hv_vblk_remove(struct platform_device *pdev)
 	if (vblkdev->epl_id == IP_SDMMC)
 		hsierrrpt_dereg_cb(vblkdev->epl_id, vblkdev->instance_id);
 #endif
-
-	return 0;
 }
 
 #ifdef CONFIG_PM_SLEEP

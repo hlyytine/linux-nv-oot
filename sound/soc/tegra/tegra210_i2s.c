@@ -1259,11 +1259,9 @@ static int tegra210_i2s_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra210_i2s_remove(struct platform_device *pdev)
+static void tegra210_i2s_remove(struct platform_device *pdev)
 {
 	pm_runtime_disable(&pdev->dev);
-
-	return 0;
 }
 
 static const struct dev_pm_ops tegra210_i2s_pm_ops = {

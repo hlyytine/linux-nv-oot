@@ -291,15 +291,13 @@ static int gr2d_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int gr2d_remove(struct platform_device *pdev)
+static void gr2d_remove(struct platform_device *pdev)
 {
 	struct gr2d *gr2d = platform_get_drvdata(pdev);
 
 	pm_runtime_disable(&pdev->dev);
 
 	host1x_client_unregister(&gr2d->client.base);
-
-	return 0;
 }
 
 static int __maybe_unused gr2d_runtime_suspend(struct device *dev)

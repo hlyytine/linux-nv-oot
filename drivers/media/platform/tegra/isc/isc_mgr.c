@@ -1174,7 +1174,7 @@ err_probe:
 	return err;
 }
 
-static int isc_mgr_remove(struct platform_device *pdev)
+static void isc_mgr_remove(struct platform_device *pdev)
 {
 	struct isc_mgr_priv *isc_mgr = dev_get_drvdata(&pdev->dev);
 
@@ -1194,8 +1194,6 @@ static int isc_mgr_remove(struct platform_device *pdev)
 		if (isc_mgr->devt)
 			unregister_chrdev_region(isc_mgr->devt, ISC_DEV_MAX);
 	}
-
-	return 0;
 }
 
 static const struct of_device_id isc_mgr_of_match[] = {

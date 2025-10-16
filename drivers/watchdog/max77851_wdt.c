@@ -193,14 +193,12 @@ static int max77851_wdt_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int max77851_wdt_remove(struct platform_device *pdev)
+static void max77851_wdt_remove(struct platform_device *pdev)
 {
 	struct max77851_wdt *wdt = platform_get_drvdata(pdev);
 
 	max77851_wdt_stop(&wdt->wdt_dev);
 	watchdog_unregister_device(&wdt->wdt_dev);
-
-	return 0;
 }
 
 static struct platform_device_id max77851_wdt_devtype[] = {

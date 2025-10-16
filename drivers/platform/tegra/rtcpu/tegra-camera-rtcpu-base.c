@@ -674,7 +674,7 @@ static int tegra_camrtc_hsp_init(struct device *dev)
 	return 0;
 }
 
-static int tegra_cam_rtcpu_remove(struct platform_device *pdev)
+static void tegra_cam_rtcpu_remove(struct platform_device *pdev)
 {
 	struct tegra_cam_rtcpu *rtcpu = platform_get_drvdata(pdev);
 	bool online = rtcpu->online;
@@ -704,8 +704,6 @@ static int tegra_cam_rtcpu_remove(struct platform_device *pdev)
 	tegra_ivc_bus_destroy(rtcpu->ivc);
 
 	pdev->dev.dma_parms = NULL;
-
-	return 0;
 }
 
 static struct device *s_dev;

@@ -1126,7 +1126,7 @@ error_class_destroy:
 	return ret;
 }
 
-static int tegra_hv_pm_ctl_remove(struct platform_device *pdev)
+static void tegra_hv_pm_ctl_remove(struct platform_device *pdev)
 {
 	struct tegra_hv_pm_ctl *data = platform_get_drvdata(pdev);
 
@@ -1134,8 +1134,6 @@ static int tegra_hv_pm_ctl_remove(struct platform_device *pdev)
 	tegra_hv_pm_ctl_cleanup(data);
 	sysfs_remove_group(&pdev->dev.kobj, &tegra_hv_pm_ctl_attr_group);
 	class_destroy(data->class);
-
-	return 0;
 }
 
 static const struct of_device_id tegra_hv_pm_ctl_match[] = {

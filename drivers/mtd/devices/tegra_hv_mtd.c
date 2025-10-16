@@ -704,7 +704,7 @@ free_ivc:
 	return ret;
 }
 
-static int tegra_virt_mtd_remove(struct platform_device *pdev)
+static void tegra_virt_mtd_remove(struct platform_device *pdev)
 {
 	struct vmtd_dev *vmtddev = platform_get_drvdata(pdev);
 
@@ -714,8 +714,6 @@ static int tegra_virt_mtd_remove(struct platform_device *pdev)
 	if (vmtddev->epl_id == IP_SDMMC)
 		hsierrrpt_dereg_cb(vmtddev->epl_id, vmtddev->instance_id);
 #endif
-
-	return 0;
 }
 
 #ifdef CONFIG_OF

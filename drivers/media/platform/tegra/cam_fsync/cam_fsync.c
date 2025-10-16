@@ -1046,7 +1046,7 @@ static int cam_fsync_probe(struct platform_device *pdev)
  *
  * @returns	0 (success), neg. errno (failure)
  */
-static int cam_fsync_remove(struct platform_device *pdev)
+static void cam_fsync_remove(struct platform_device *pdev)
 {
 	struct cam_fsync_controller *controller = platform_get_drvdata(pdev);
 	struct fsync_generator_group *group;
@@ -1059,12 +1059,10 @@ static int cam_fsync_remove(struct platform_device *pdev)
 		if (group->active) {
 			err = cam_fsync_stop_group_generators(group);
 			if (err != 0)
-				return err;
+				return;
 			group->active = false;
 		}
 	}
-
-	return err;
 }
 
 /**

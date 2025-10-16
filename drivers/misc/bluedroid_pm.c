@@ -526,7 +526,7 @@ free_bluedriod_pm:
 	return -ENODEV;
 }
 
-static int bluedroid_pm_remove(struct platform_device *pdev)
+static void bluedroid_pm_remove(struct platform_device *pdev)
 {
 	struct bluedroid_pm_data *bluedroid_pm = platform_get_drvdata(pdev);
 
@@ -555,8 +555,6 @@ static int bluedroid_pm_remove(struct platform_device *pdev)
 		regulator_put(bluedroid_pm->vdd_3v3);
 	if (bluedroid_pm->vdd_1v8)
 		regulator_put(bluedroid_pm->vdd_1v8);
-
-	return 0;
 }
 
 static int bluedroid_pm_suspend(struct platform_device *pdev,

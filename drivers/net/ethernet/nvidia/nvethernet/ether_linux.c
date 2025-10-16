@@ -6767,7 +6767,7 @@ err_kzalloc:
  * @retval 0 on success
  * @retval "negative value" on failure.
  */
-static int ether_remove(struct platform_device *pdev)
+static void ether_remove(struct platform_device *pdev)
 {
 	struct net_device *ndev = platform_get_drvdata(pdev);
 	struct ether_priv_data *pdata = netdev_priv(ndev);
@@ -6796,8 +6796,6 @@ static int ether_remove(struct platform_device *pdev)
 	}
 
 	free_netdev(ndev);
-
-	return 0;
 }
 
 /**

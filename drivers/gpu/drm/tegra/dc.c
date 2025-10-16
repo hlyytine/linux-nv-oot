@@ -3277,7 +3277,7 @@ disable_pm:
 	return err;
 }
 
-static int tegra_dc_remove(struct platform_device *pdev)
+static void tegra_dc_remove(struct platform_device *pdev)
 {
 	struct tegra_dc *dc = platform_get_drvdata(pdev);
 	int err;
@@ -3287,12 +3287,10 @@ static int tegra_dc_remove(struct platform_device *pdev)
 	err = tegra_dc_rgb_remove(dc);
 	if (err < 0) {
 		dev_err(&pdev->dev, "failed to remove RGB output: %d\n", err);
-		return err;
+		return;
 	}
 
 	pm_runtime_disable(&pdev->dev);
-
-	return 0;
 }
 
 struct platform_driver tegra_dc_driver = {

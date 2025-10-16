@@ -681,11 +681,9 @@ static int tegra210_dmic_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra210_dmic_remove(struct platform_device *pdev)
+static void tegra210_dmic_remove(struct platform_device *pdev)
 {
 	pm_runtime_disable(&pdev->dev);
-
-	return 0;
 }
 
 static const struct dev_pm_ops tegra210_dmic_pm_ops = {

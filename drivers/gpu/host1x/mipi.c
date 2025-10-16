@@ -537,13 +537,11 @@ static int tegra_mipi_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra_mipi_remove(struct platform_device *pdev)
+static void tegra_mipi_remove(struct platform_device *pdev)
 {
 	struct tegra_mipi *mipi = platform_get_drvdata(pdev);
 
 	clk_unprepare(mipi->clk);
-
-	return 0;
 }
 
 struct platform_driver tegra_mipi_driver = {

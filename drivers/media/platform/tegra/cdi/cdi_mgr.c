@@ -2054,7 +2054,7 @@ err_probe:
 	return err;
 }
 
-static int cdi_mgr_remove(struct platform_device *pdev)
+static void cdi_mgr_remove(struct platform_device *pdev)
 {
 	struct cdi_mgr_priv *cdi_mgr = dev_get_drvdata(&pdev->dev);
 
@@ -2074,8 +2074,6 @@ static int cdi_mgr_remove(struct platform_device *pdev)
 		if (cdi_mgr->devt)
 			unregister_chrdev_region(cdi_mgr->devt, CDI_DEV_MAX);
 	}
-
-	return 0;
 }
 
 static const struct of_device_id cdi_mgr_of_match[] = {

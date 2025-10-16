@@ -265,15 +265,13 @@ static int tegra234_psc_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra234_psc_remove(struct platform_device *pdev)
+static void tegra234_psc_remove(struct platform_device *pdev)
 {
 	struct psc_mbox *psc = platform_get_drvdata(pdev);
 
 	psc_debugfs_remove(pdev);
 
 	mbox_controller_unregister(&psc->mbox);
-
-	return 0;
 }
 
 static const struct of_device_id tegra234_psc_match[] = {

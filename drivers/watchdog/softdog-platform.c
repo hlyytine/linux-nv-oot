@@ -188,14 +188,13 @@ timer_del:
 	return ret;
 }
 
-static int softdog_platform_remove(struct platform_device *pdev)
+static void softdog_platform_remove(struct platform_device *pdev)
 {
 	struct softdog_platform_wdt *swdt = platform_get_drvdata(pdev);
 
 	del_timer_sync(&swdt->watchdog_ticktock);
 	watchdog_unregister_device(&swdt->wdt_dev);
 	unregister_reboot_notifier(&swdt->nb);
-	return 0;
 }
 
 static void softdog_platform_shutdown(struct platform_device *pdev)

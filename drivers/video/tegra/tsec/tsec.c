@@ -451,13 +451,13 @@ static int tsec_probe(struct platform_device *dev)
 	return tsec_kickoff_boot(dev);
 }
 
-static int tsec_remove(struct platform_device *dev)
+static void tsec_remove(struct platform_device *dev)
 {
 #ifdef CONFIG_DEBUG_FS
 	tsec_module_deinit_debugfs(dev);
 #endif /* CONFIG_DEBUG_FS */
 
-	return tsec_poweroff(&dev->dev);
+	tsec_poweroff(&dev->dev);
 }
 
 static struct platform_driver tsec_driver = {

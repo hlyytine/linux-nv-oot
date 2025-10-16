@@ -550,15 +550,13 @@ static int gr3d_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int gr3d_remove(struct platform_device *pdev)
+static void gr3d_remove(struct platform_device *pdev)
 {
 	struct gr3d *gr3d = platform_get_drvdata(pdev);
 
 	pm_runtime_disable(&pdev->dev);
 
 	host1x_client_unregister(&gr3d->client.base);
-
-	return 0;
 }
 
 static int __maybe_unused gr3d_runtime_suspend(struct device *dev)

@@ -305,7 +305,7 @@ error:
 	return err;
 }
 
-static int vi5_remove(struct platform_device *pdev)
+static void vi5_remove(struct platform_device *pdev)
 {
 	struct nvhost_device_data *pdata = platform_get_drvdata(pdev);
 	struct host_vi5 *vi5 = pdata->private_data;
@@ -314,7 +314,6 @@ static int vi5_remove(struct platform_device *pdev)
 
 	vi5_remove_debugfs(vi5);
 	platform_device_put(vi5->vi_thi);
-	return 0;
 }
 
 static struct nvhost_device_data t19_vi5_info = {

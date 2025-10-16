@@ -509,7 +509,7 @@ clk_unprep:
 	return ret;
 }
 
-static int pwm_tegra_tach_remove(struct platform_device *pdev)
+static void pwm_tegra_tach_remove(struct platform_device *pdev)
 {
 	struct pwm_chip *chip = platform_get_drvdata(pdev);
 	struct pwm_tegra_tach *ptt = to_tegra_pwm_chip(chip);
@@ -522,8 +522,6 @@ static int pwm_tegra_tach_remove(struct platform_device *pdev)
 	clk_disable_unprepare(ptt->clk);
 
 	pwmchip_remove(chip);
-
-	return 0;
 }
 
 static int pwm_tegra_tach_suspend(struct device *dev)

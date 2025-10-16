@@ -4774,14 +4774,13 @@ err:
 	return ret;
 }
 
-static int tegra210_adsp_audio_remove(struct platform_device *pdev)
+static void tegra210_adsp_audio_remove(struct platform_device *pdev)
 {
 	struct tegra210_adsp *adsp = dev_get_drvdata(&pdev->dev);
 
 	netlink_kernel_release(adsp->nl_sk);
 	snd_soc_unregister_component(&pdev->dev);
 	pm_runtime_disable(&pdev->dev);
-	return 0;
 }
 
 

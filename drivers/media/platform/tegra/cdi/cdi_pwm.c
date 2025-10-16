@@ -215,13 +215,11 @@ static int cdi_pwm_probe(struct platform_device *pdev)
 	return err;
 }
 
-static int cdi_pwm_remove(struct platform_device *pdev)
+static void cdi_pwm_remove(struct platform_device *pdev)
 {
 	struct pwm_chip *chip = platform_get_drvdata(pdev);
 
 	pwmchip_remove(chip);
-
-	return 0;
 }
 
 static int cdi_pwm_suspend(struct device *dev)

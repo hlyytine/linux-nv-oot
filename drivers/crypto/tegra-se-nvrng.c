@@ -189,7 +189,7 @@ static int tegra_se_nvrng_probe(struct platform_device *pdev)
 	return tegra_se_nvrng_request_irq(nvrng_dev);
 }
 
-static int tegra_se_nvrng_remove(struct platform_device *pdev)
+static void tegra_se_nvrng_remove(struct platform_device *pdev)
 {
 	struct tegra_se_nvrng_dev *nvrng_dev =
 		(struct tegra_se_nvrng_dev *)platform_get_drvdata(pdev);
@@ -197,8 +197,6 @@ static int tegra_se_nvrng_remove(struct platform_device *pdev)
 	free_irq(nvrng_dev->irq, nvrng_dev);
 	clk_disable_unprepare(nvrng_dev->clk);
 	devm_clk_put(&pdev->dev, nvrng_dev->clk);
-
-	return 0;
 }
 
 #ifdef CONFIG_PM_SLEEP

@@ -98,10 +98,9 @@ static int mods_smmu_driver_probe(struct platform_device *pdev)
 	return err;
 }
 
-static int mods_smmu_driver_remove(struct platform_device *pdev)
+static void mods_smmu_driver_remove(struct platform_device *pdev)
 {
 	mods_smmu_dev_num = 0;
-	return 0;
 }
 
 static const struct of_device_id of_ids[] = {

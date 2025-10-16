@@ -1263,7 +1263,7 @@ err_get_pdata:
 	return err;
 }
 
-static int __exit nvdla_remove(struct platform_device *pdev)
+static void __exit nvdla_remove(struct platform_device *pdev)
 {
 	struct nvhost_device_data *pdata = platform_get_drvdata(pdev);
 	struct nvdla_device *nvdla_dev = pdata->private_data;
@@ -1327,8 +1327,6 @@ static int __exit nvdla_remove(struct platform_device *pdev)
 	nvdla_free_cmd_memory(pdev);
 
 	nvdla_dbg_fn(pdev, "");
-
-	return 0;
 }
 
 #ifdef CONFIG_PM

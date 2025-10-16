@@ -141,7 +141,7 @@ exit:
 	return ret;
 }
 
-static int tegra_aon_remove(struct platform_device *pdev)
+static void tegra_aon_remove(struct platform_device *pdev)
 {
 	struct tegra_aon *aon = platform_get_drvdata(pdev);
 
@@ -149,8 +149,6 @@ static int tegra_aon_remove(struct platform_device *pdev)
 		tegra_aon_debugfs_remove(aon);
 		tegra_aon_mail_deinit(aon);
 	}
-
-	return 0;
 }
 
 static const struct of_device_id tegra_aon_of_match[] = {

@@ -328,7 +328,7 @@ static int tegra_se_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra_se_remove(struct platform_device *pdev)
+static void tegra_se_remove(struct platform_device *pdev)
 {
 	struct tegra_se *se = platform_get_drvdata(pdev);
 
@@ -336,8 +336,6 @@ static int tegra_se_remove(struct platform_device *pdev)
 	crypto_engine_exit(se->engine);
 	iommu_fwspec_free(se->dev);
 	host1x_client_unregister(&se->client);
-
-	return 0;
 }
 
 static const struct tegra_se_regs tegra234_aes1_regs = {
@@ -406,11 +404,9 @@ static int tegra_se_host1x_probe(struct host1x_device *dev)
 	return host1x_device_init(dev);
 }
 
-static int tegra_se_host1x_remove(struct host1x_device *dev)
+static void tegra_se_host1x_remove(struct host1x_device *dev)
 {
 	host1x_device_exit(dev);
-
-	return 0;
 }
 
 static struct host1x_driver tegra_se_host1x_driver = {

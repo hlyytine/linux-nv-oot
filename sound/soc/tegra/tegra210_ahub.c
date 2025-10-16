@@ -1665,11 +1665,9 @@ static int tegra_ahub_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra_ahub_remove(struct platform_device *pdev)
+static void tegra_ahub_remove(struct platform_device *pdev)
 {
 	pm_runtime_disable(&pdev->dev);
-
-	return 0;
 }
 
 static const struct dev_pm_ops tegra_ahub_pm_ops = {

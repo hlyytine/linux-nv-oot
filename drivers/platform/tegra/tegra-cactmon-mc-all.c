@@ -122,13 +122,11 @@ static int central_actmon_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int central_actmon_remove(struct platform_device *pdev)
+static void central_actmon_remove(struct platform_device *pdev)
 {
 	struct central_actmon *cactmon = platform_get_drvdata(pdev);
 
 	debugfs_remove_recursive(cactmon->debugfs);
-
-	return 0;
 }
 
 

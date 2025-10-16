@@ -606,7 +606,7 @@ exit_falcon:
 	return err;
 }
 
-static int ofa_remove(struct platform_device *pdev)
+static void ofa_remove(struct platform_device *pdev)
 {
 	struct ofa *ofa = platform_get_drvdata(pdev);
 
@@ -622,8 +622,6 @@ static int ofa_remove(struct platform_device *pdev)
 	host1x_client_unregister(&ofa->client.base);
 
 	falcon_exit(&ofa->falcon);
-
-	return 0;
 }
 
 static const struct dev_pm_ops ofa_pm_ops = {

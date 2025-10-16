@@ -235,13 +235,13 @@ put_bpmp:
 	return ret;
 }
 
-static int nvpmodel_clk_cap_remove(struct platform_device *pdev)
+static void nvpmodel_clk_cap_remove(struct platform_device *pdev)
 {
 	int i;
 	struct nvpmodel_clk_cap *nvpm_clk_cap = platform_get_drvdata(pdev);
 
 	if (!nvpm_clk_cap)
-		return -EINVAL;
+		return;
 
 	tegra_bpmp_put(nvpm_clk_cap->bpmp);
 
@@ -259,8 +259,6 @@ static int nvpmodel_clk_cap_remove(struct platform_device *pdev)
 	}
 
 	kobject_put(nvpm_clk_cap->clk_cap_kobject);
-
-	return 0;
 }
 
 static struct platform_driver nvpmodel_clk_cap_driver = {

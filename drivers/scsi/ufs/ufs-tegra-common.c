@@ -1905,14 +1905,12 @@ static int ufs_tegra_probe(struct platform_device *pdev)
 	return err;
 }
 
-static int ufs_tegra_remove(struct platform_device *pdev)
+static void ufs_tegra_remove(struct platform_device *pdev)
 {
 	struct ufs_hba *hba =  platform_get_drvdata(pdev);
 
 	pm_runtime_get_sync(&(pdev)->dev);
 	ufshcd_remove(hba);
-	return 0;
-
 }
 
 static struct ufs_tegra_soc_data tegra194_soc_data = {

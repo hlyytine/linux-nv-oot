@@ -139,9 +139,8 @@ error:
 	return err;
 }
 
-static int capture_support_remove(struct platform_device *pdev)
+static void capture_support_remove(struct platform_device *pdev)
 {
-	return 0;
 }
 
 struct nvhost_device_data t19_isp_thi_info = {

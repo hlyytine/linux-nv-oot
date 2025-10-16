@@ -801,7 +801,7 @@ static int t234_safety_audio_probe(struct platform_device *pdev)
 	return ret;
 }
 
-static int t234_safety_audio_remove(struct platform_device *pdev)
+static void t234_safety_audio_remove(struct platform_device *pdev)
 {
 	int i;
 
@@ -813,8 +813,6 @@ static int t234_safety_audio_remove(struct platform_device *pdev)
 	}
 
 	snd_card_free(priv->card);
-
-	return 0;
 }
 
 static struct platform_driver t234_safety_audio_driver = {

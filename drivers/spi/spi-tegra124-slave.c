@@ -2174,7 +2174,7 @@ exit_free_irq:
 	return ret;
 }
 
-static int tegra_spi_remove(struct platform_device *pdev)
+static void tegra_spi_remove(struct platform_device *pdev)
 {
 	struct spi_controller *controller = dev_get_drvdata(&pdev->dev);
 	struct tegra_spi_data	*tspi = spi_controller_get_devdata(controller);
@@ -2197,8 +2197,6 @@ static int tegra_spi_remove(struct platform_device *pdev)
 
 	if (tspi->clock_always_on)
 		clk_disable_unprepare(tspi->clk);
-
-	return 0;
 }
 
 #ifdef CONFIG_PM_SLEEP

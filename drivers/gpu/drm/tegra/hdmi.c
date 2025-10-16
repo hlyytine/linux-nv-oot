@@ -1898,15 +1898,13 @@ static int tegra_hdmi_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra_hdmi_remove(struct platform_device *pdev)
+static void tegra_hdmi_remove(struct platform_device *pdev)
 {
 	struct tegra_hdmi *hdmi = platform_get_drvdata(pdev);
 
 	host1x_client_unregister(&hdmi->client);
 
 	tegra_output_remove(&hdmi->output);
-
-	return 0;
 }
 
 struct platform_driver tegra_hdmi_driver = {

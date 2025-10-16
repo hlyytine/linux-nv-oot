@@ -752,14 +752,12 @@ fail:
 	return ret;
 }
 
-static int tegra_hv_vblk_oops_remove(struct platform_device *pdev)
+static void tegra_hv_vblk_oops_remove(struct platform_device *pdev)
 {
 	struct vblk_dev *vblkdev = platform_get_drvdata(pdev);
 
 	tegra_hv_ivc_unreserve(vblkdev->ivck);
 	tegra_hv_mempool_unreserve(vblkdev->ivmk);
-
-	return 0;
 }
 
 #ifdef CONFIG_PM_SLEEP

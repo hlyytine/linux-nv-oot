@@ -819,7 +819,7 @@ mutex_exit:
 	mutex_destroy(&info->lock);
 }
 
-static int max77851_rtc_remove(struct platform_device *pdev)
+static void max77851_rtc_remove(struct platform_device *pdev)
 {
 #if defined(CONFIG_REGMAP_IRQ) || defined(CONFIG_I2C)
 	struct max77851_rtc_info *info = platform_get_drvdata(pdev);
@@ -833,8 +833,6 @@ static int max77851_rtc_remove(struct platform_device *pdev)
 		i2c_unregister_device(info->rtc);
 #endif
 #endif
-
-	return 0;
 }
 
 #ifdef CONFIG_PM_SLEEP

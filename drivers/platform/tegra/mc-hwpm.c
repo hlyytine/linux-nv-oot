@@ -125,7 +125,7 @@ static int tegra_mc_hwpm_hwpm_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra_mc_hwpm_remove(struct platform_device *pdev)
+static void tegra_mc_hwpm_remove(struct platform_device *pdev)
 {
 	struct device *dev = &pdev->dev;
 	struct tegra_mc_hwpm *mc;
@@ -133,7 +133,7 @@ static int tegra_mc_hwpm_remove(struct platform_device *pdev)
 	mc = dev_get_drvdata(dev);
 	if (!mc) {
 		pr_err("tegra-mc-hwpm: Invalid device\n");
-		return -ENODEV;
+		return;
 	}
 
 	hwpm_ip_ops.ip_dev = (void *)mc->dev;
@@ -141,8 +141,6 @@ static int tegra_mc_hwpm_remove(struct platform_device *pdev)
 	hwpm_ip_ops.ip_base_address = mc->base_addr;
 	hwpm_ip_ops.hwpm_ip_reg_op = NULL;
 	tegra_soc_hwpm_ip_unregister(&hwpm_ip_ops);
-
-	return 0;
 }
 
 static struct platform_driver mc_hwpm_driver = {

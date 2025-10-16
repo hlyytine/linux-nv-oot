@@ -226,15 +226,13 @@ static int pva_iommu_context_dev_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int __exit pva_iommu_context_dev_remove(struct platform_device *pdev)
+static void __exit pva_iommu_context_dev_remove(struct platform_device *pdev)
 {
 	struct pva_iommu_ctx *ctx = platform_get_drvdata(pdev);
 
 	mutex_lock(&pva_iommu_ctx_list_mutex);
 	list_del(&ctx->list);
 	mutex_unlock(&pva_iommu_ctx_list_mutex);
-
-	return 0;
 }
 
 struct platform_driver nvpva_iommu_context_dev_driver = {

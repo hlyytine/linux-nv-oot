@@ -604,7 +604,7 @@ static int cdi_tsc_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int cdi_tsc_remove(struct platform_device *pdev)
+static void cdi_tsc_remove(struct platform_device *pdev)
 {
 	struct tsc_signal_controller *controller = platform_get_drvdata(pdev);
 
@@ -620,7 +620,7 @@ static int cdi_tsc_remove(struct platform_device *pdev)
 
 	// Unregister the major number
 	unregister_chrdev(majorNumber, DEVICE_NAME);
-	return cdi_tsc_stop_generators(controller);
+	cdi_tsc_stop_generators(controller);
 }
 
 static int __maybe_unused cdi_tsc_suspend(struct device *dev)

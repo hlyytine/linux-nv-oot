@@ -182,5 +182,5 @@ static inline void actmon_dev_writel(void __iomem *base, u32
 }
 
 int tegra_actmon_register(struct actmon_drv_data *actmon);
-int tegra_actmon_remove(struct platform_device *pdev);
+void tegra_actmon_remove(struct platform_device *pdev);
 #endif /* ACTMON_COMMON_H */

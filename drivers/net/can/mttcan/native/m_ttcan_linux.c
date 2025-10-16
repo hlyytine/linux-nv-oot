@@ -1925,7 +1925,7 @@ exit:
 	return ret;
 }
 
-static int mttcan_remove(struct platform_device *pdev)
+static void mttcan_remove(struct platform_device *pdev)
 {
 	struct net_device *dev = platform_get_drvdata(pdev);
 	struct mttcan_priv *priv = netdev_priv(dev);
@@ -1941,8 +1941,6 @@ static int mttcan_remove(struct platform_device *pdev)
 	mttcan_unprepare_clock(priv);
 	platform_set_drvdata(pdev, NULL);
 	free_mttcan_dev(dev);
-
-	return 0;
 }
 
 #ifdef CONFIG_PM

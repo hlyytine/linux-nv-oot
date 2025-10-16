@@ -404,7 +404,7 @@ static void fsicom_client_shutdown(struct platform_device *pdev)
 	}
 }
 
-static int fsicom_client_remove(struct platform_device *pdev)
+static void fsicom_client_remove(struct platform_device *pdev)
 {
 	u32 val;
 	int ret;
@@ -413,7 +413,7 @@ static int fsicom_client_remove(struct platform_device *pdev)
 	ret = of_property_read_u32(pdev->dev.of_node, "smmu_inst", &val);
 	if (ret) {
 		pr_err("failed to read smmu_inst\n");
-		return -1;
+		return;
 	}
 	if (val == 0) {
 		pr_debug("fsicom remove called");
@@ -422,7 +422,6 @@ static int fsicom_client_remove(struct platform_device *pdev)
 		list_del(&ctx->list);
 		mutex_unlock(&fsi_dev_list_mutex);
 	}
-	return 0;
 }
 
 static int __maybe_unused fsicom_client_suspend(struct device *dev)

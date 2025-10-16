@@ -483,10 +483,9 @@ static int ras_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int ras_remove(struct platform_device *pdev)
+static void ras_remove(struct platform_device *pdev)
 {
 	cpuhp_remove_state(hp_state);
-	return 0;
 }
 
 static struct platform_driver ras_driver = {

@@ -508,11 +508,10 @@ static int tegra_dma_driver_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra_dma_driver_remove(struct platform_device *pdev)
+static void tegra_dma_driver_remove(struct platform_device *pdev)
 {
 	put_device(&pdev->dev);
 	mods_tegra_dma_dev = NULL;
-	return 0;
 }
 
 static const struct of_device_id of_ids[] = {

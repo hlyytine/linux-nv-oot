@@ -224,7 +224,7 @@ static const struct file_operations fops = {
 	.unlocked_ioctl = tegra_hv_vcpu_yield_ioctl,
 };
 
-static int tegra_hv_vcpu_yield_remove(struct platform_device *pdev)
+static void tegra_hv_vcpu_yield_remove(struct platform_device *pdev)
 {
 	uint32_t i;
 	struct vcpu_yield_plat_dev *vcpu_yield_pdev = NULL;
@@ -270,8 +270,6 @@ static int tegra_hv_vcpu_yield_remove(struct platform_device *pdev)
 		kfree(vcpu_yield_pdev);
 		dev_set_drvdata(&pdev->dev, NULL);
 	}
-
-	return 0;
 }
 
 static int tegra_hv_vcpu_yield_probe(struct platform_device *pdev)

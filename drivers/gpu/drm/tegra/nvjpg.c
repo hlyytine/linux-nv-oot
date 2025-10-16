@@ -711,7 +711,7 @@ exit_falcon:
 	return err;
 }
 
-static int nvjpg_remove(struct platform_device *pdev)
+static void nvjpg_remove(struct platform_device *pdev)
 {
 	struct nvjpg *nvjpg = platform_get_drvdata(pdev);
 
@@ -724,8 +724,6 @@ static int nvjpg_remove(struct platform_device *pdev)
 	host1x_client_unregister(&nvjpg->client.base);
 
 	falcon_exit(&nvjpg->falcon);
-
-	return 0;
 }
 
 static const struct dev_pm_ops nvjpg_pm_ops = {

@@ -528,7 +528,7 @@ unregister_client:
 	return err;
 }
 
-static int virt_engine_remove(struct platform_device *pdev)
+static void virt_engine_remove(struct platform_device *pdev)
 {
 	struct virt_engine *virt_engine = platform_get_drvdata(pdev);
 #ifndef CONFIG_TEGRA_SYSTEM_TYPE_ACK
@@ -541,7 +541,7 @@ static int virt_engine_remove(struct platform_device *pdev)
 		if (hwpm_ip_ops.ip_base_address <= 0) {
 			dev_err(&pdev->dev,
 					"IP Base address not found. HWPM-IP Un-register failed");
-			return 0;
+			return;
 		}
 		hwpm_ip_ops.resource_enum = hwpm_ip_index;
 		tegra_soc_hwpm_ip_unregister(&hwpm_ip_ops);
@@ -551,8 +551,6 @@ static int virt_engine_remove(struct platform_device *pdev)
 	virt_engine_cleanup();
 
 	host1x_client_unregister(&virt_engine->client.base);
-
-	return 0;
 }
 
 static const struct dev_pm_ops virt_engine_pm_ops = {

@@ -4014,7 +4014,7 @@ put_aux:
 	return err;
 }
 
-static int tegra_sor_remove(struct platform_device *pdev)
+static void tegra_sor_remove(struct platform_device *pdev)
 {
 	struct tegra_sor *sor = platform_get_drvdata(pdev);
 
@@ -4028,8 +4028,6 @@ static int tegra_sor_remove(struct platform_device *pdev)
 	}
 
 	tegra_output_remove(&sor->output);
-
-	return 0;
 }
 
 static int __maybe_unused tegra_sor_suspend(struct device *dev)

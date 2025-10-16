@@ -1844,7 +1844,7 @@ exit_pm_disable:
 	return ret;
 }
 
-static int tegra_qspi_remove(struct platform_device *pdev)
+static void tegra_qspi_remove(struct platform_device *pdev)
 {
 	struct spi_controller *controller = platform_get_drvdata(pdev);
 	struct tegra_qspi *tqspi = spi_controller_get_devdata(controller);
@@ -1854,8 +1854,6 @@ static int tegra_qspi_remove(struct platform_device *pdev)
 	pm_runtime_put_noidle(&pdev->dev);
 	pm_runtime_force_suspend(&pdev->dev);
 	tegra_qspi_deinit_dma(tqspi);
-
-	return 0;
 }
 
 static int __maybe_unused tegra_qspi_suspend(struct device *dev)

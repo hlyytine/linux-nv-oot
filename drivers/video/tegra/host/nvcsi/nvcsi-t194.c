@@ -231,7 +231,7 @@ err_client_device_init:
 	return err;
 }
 
-static int __exit t194_nvcsi_remove(struct platform_device *dev)
+static void __exit t194_nvcsi_remove(struct platform_device *dev)
 {
 	struct nvhost_device_data *pdata = platform_get_drvdata(dev);
 	struct t194_nvcsi *nvcsi = pdata->private_data;
@@ -239,8 +239,6 @@ static int __exit t194_nvcsi_remove(struct platform_device *dev)
 	tegra_camera_device_unregister(nvcsi);
 	mc_csi = NULL;
 	tegra_csi_media_controller_remove(&nvcsi->csi);
-
-	return 0;
 }
 
 static struct platform_driver t194_nvcsi_driver = {

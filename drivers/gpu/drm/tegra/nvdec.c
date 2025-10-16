@@ -938,7 +938,7 @@ exit_falcon:
 	return err;
 }
 
-static int nvdec_remove(struct platform_device *pdev)
+static void nvdec_remove(struct platform_device *pdev)
 {
 	struct nvdec *nvdec = platform_get_drvdata(pdev);
 
@@ -954,8 +954,6 @@ static int nvdec_remove(struct platform_device *pdev)
 	host1x_client_unregister(&nvdec->client.base);
 
 	falcon_exit(&nvdec->falcon);
-
-	return 0;
 }
 
 static const struct dev_pm_ops nvdec_pm_ops = {

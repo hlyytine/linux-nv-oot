@@ -206,7 +206,7 @@ out_fail:
 	return ret;
 }
 
-static int tegra_auto_cpuidle_remove(struct platform_device *pdev)
+static void tegra_auto_cpuidle_remove(struct platform_device *pdev)
 {
 	int cpu;
 	struct cpuidle_driver *drv;
@@ -217,8 +217,6 @@ static int tegra_auto_cpuidle_remove(struct platform_device *pdev)
 		per_cpu(tegra_auto_cpuidle_drivers, cpu) = NULL;
 		kfree(drv);
 	}
-
-	return 0;
 }
 
 static const struct of_device_id tegra_auto_cpuidle_of[] = {

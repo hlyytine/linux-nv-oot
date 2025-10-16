@@ -1540,7 +1540,7 @@ finish:
 	return e;
 }
 
-int nvmap_remove(struct platform_device *pdev)
+void nvmap_remove(struct platform_device *pdev)
 {
 	struct nvmap_device *dev = platform_get_drvdata(pdev);
 	struct rb_node *n;
@@ -1570,5 +1570,4 @@ int nvmap_remove(struct platform_device *pdev)
 	kfree(dev->heaps);
 
 	nvmap_dev = NULL;
-	return 0;
 }

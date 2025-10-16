@@ -492,7 +492,7 @@ out:
 	return ret;
 }
 
-static int nvadsp_remove(struct platform_device *pdev)
+static void nvadsp_remove(struct platform_device *pdev)
 {
 	struct nvadsp_drv_data *drv_data = platform_get_drvdata(pdev);
 
@@ -506,8 +506,6 @@ static int nvadsp_remove(struct platform_device *pdev)
 	if (!pm_runtime_status_suspended(&pdev->dev))
 		nvadsp_runtime_suspend(&pdev->dev);
 #endif
-
-	return 0;
 }
 
 #ifdef CONFIG_OF

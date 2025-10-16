@@ -200,7 +200,7 @@ destroy_lock:
 	return ret;
 }
 
-static int thermal_trip_event_remove(struct platform_device *pdev)
+static void thermal_trip_event_remove(struct platform_device *pdev)
 {
 	struct device *dev = &pdev->dev;
 	struct therm_trip_event *tte = dev_get_drvdata(dev);
@@ -227,8 +227,6 @@ static int thermal_trip_event_remove(struct platform_device *pdev)
 	thermal_cooling_device_unregister(cdev);
 	mutex_destroy(&tte->event_timeout_lock);
 	mutex_destroy(&tte->cur_state_lock);
-
-	return 0;
 }
 
 static const struct of_device_id thermal_trip_event_of_match[] = {

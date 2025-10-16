@@ -307,7 +307,7 @@ const struct file_operations tegra194_isp5_ctrl_ops = {
 	.release = isp_release,
 };
 
-static int isp5_remove(struct platform_device *pdev)
+static void isp5_remove(struct platform_device *pdev)
 {
 	struct nvhost_device_data *pdata = platform_get_drvdata(pdev);
 	struct host_isp5 *isp5 = (struct host_isp5 *)pdata->private_data;
@@ -317,8 +317,6 @@ static int isp5_remove(struct platform_device *pdev)
 	isp_channel_drv_unregister(&pdev->dev);
 
 	platform_device_put(isp5->isp_thi);
-
-	return 0;
 }
 
 struct nvhost_device_data t19_isp5_info = {

@@ -566,12 +566,11 @@ static int t23x_mce_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int t23x_mce_remove(struct platform_device *pdev)
+static void t23x_mce_remove(struct platform_device *pdev)
 {
 #ifdef CONFIG_DEBUG_FS
 	tegra23x_mce_exit();
 #endif
-	return 0;
 }
 
 static const struct of_device_id t23x_mce_of_match[] = {

@@ -456,13 +456,11 @@ static int nvvrs_rtc_probe(struct platform_device *pdev)
 	return ret;
 }
 
-static int nvvrs_rtc_remove(struct platform_device *pdev)
+static void nvvrs_rtc_remove(struct platform_device *pdev)
 {
 	struct nvvrs_rtc_info *info = platform_get_drvdata(pdev);
 
 	free_irq(info->rtc_irq, info);
-
-	return 0;
 }
 
 #ifdef CONFIG_PM_SLEEP

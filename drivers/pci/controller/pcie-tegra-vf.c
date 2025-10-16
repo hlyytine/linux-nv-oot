@@ -124,7 +124,7 @@ static int pci_tegra_vf_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int pci_tegra_vf_remove(struct platform_device *pdev)
+static void pci_tegra_vf_remove(struct platform_device *pdev)
 {
 	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
 
@@ -132,8 +132,6 @@ static int pci_tegra_vf_remove(struct platform_device *pdev)
 	pci_stop_root_bus(bridge->bus);
 	pci_remove_root_bus(bridge->bus);
 	pci_unlock_rescan_remove();
-
-	return 0;
 }
 
 static const struct of_device_id pci_tegra_vf_of_match[] = {

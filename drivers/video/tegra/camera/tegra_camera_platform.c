@@ -777,7 +777,7 @@ int tegra_camera_update_clknbw(void *priv, bool stream_on)
 }
 EXPORT_SYMBOL(tegra_camera_update_clknbw);
 
-static int tegra_camera_remove(struct platform_device *pdev)
+static void tegra_camera_remove(struct platform_device *pdev)
 {
 	struct tegra_camera_info *info = platform_get_drvdata(pdev);
 
@@ -789,8 +789,6 @@ static int tegra_camera_remove(struct platform_device *pdev)
 
 	tegra_camera_isomgr_unregister(info);
 	misc_deregister(&tegra_camera_misc);
-
-	return 0;
 }
 
 static struct platform_driver tegra_camera_driver = {

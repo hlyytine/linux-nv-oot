@@ -660,11 +660,10 @@ static int tegra_bl_debug_probe(struct platform_device *pdev)
 	return 0; // Return 0 for success
 }
 
-static int tegra_bl_debug_remove(struct platform_device *pdev)
+static void tegra_bl_debug_remove(struct platform_device *pdev)
 {
 	// Device removal code goes here
 	pr_info("%s\n", __func__);
-	return 0; // Return 0 for success
 }
 
 static const struct of_device_id tegra_bl_debug_of_match[] = {

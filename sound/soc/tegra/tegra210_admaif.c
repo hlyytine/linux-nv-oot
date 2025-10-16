@@ -1378,13 +1378,11 @@ static int tegra_admaif_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra_admaif_remove(struct platform_device *pdev)
+static void tegra_admaif_remove(struct platform_device *pdev)
 {
 	tegra_isomgr_adma_unregister(&pdev->dev);
 
 	pm_runtime_disable(&pdev->dev);
-
-	return 0;
 }
 
 static const struct dev_pm_ops tegra_admaif_pm_ops = {

@@ -604,15 +604,13 @@ static int scf_pmu_device_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int scf_pmu_device_remove(struct platform_device *pdev)
+static void scf_pmu_device_remove(struct platform_device *pdev)
 {
 	struct uncore_pmu *uncore_pmu = platform_get_drvdata(pdev);
 
 	perf_pmu_unregister(&uncore_pmu->pmu);
 	kfree(uncore_pmu);
 	dev_info(&pdev->dev, "Unregistered T23x SCF Uncore PMU\n");
-
-	return 0;
 }
 
 static const struct of_device_id scf_pmu_of_device_ids[] = {

@@ -998,7 +998,7 @@ destroy_cache:
 	return err;
 }
 
-static int host1x_remove(struct platform_device *pdev)
+static void host1x_remove(struct platform_device *pdev)
 {
 	struct host1x *host = platform_get_drvdata(pdev);
 
@@ -1013,8 +1013,6 @@ static int host1x_remove(struct platform_device *pdev)
 	host1x_channel_list_free(&host->channel_list);
 	host1x_iommu_exit(host);
 	host1x_bo_cache_destroy(&host->cache);
-
-	return 0;
 }
 
 static int __maybe_unused host1x_runtime_suspend(struct device *dev)

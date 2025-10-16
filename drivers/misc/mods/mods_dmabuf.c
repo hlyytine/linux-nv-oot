@@ -114,9 +114,8 @@ static int mods_dmabuf_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int mods_dmabuf_remove(struct platform_device *pdev)
+static void mods_dmabuf_remove(struct platform_device *pdev)
 {
-	return 0;
 }
 
 static const struct of_device_id of_ids[] = {

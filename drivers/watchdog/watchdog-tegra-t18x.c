@@ -728,7 +728,7 @@ static void tegra_wdt_t18x_shutdown(struct platform_device *pdev)
 	__tegra_wdt_t18x_disable(twdt_t18x);
 }
 
-static int tegra_wdt_t18x_remove(struct platform_device *pdev)
+static void tegra_wdt_t18x_remove(struct platform_device *pdev)
 {
 	struct tegra_wdt_t18x *twdt_t18x = platform_get_drvdata(pdev);
 
@@ -739,8 +739,6 @@ static int tegra_wdt_t18x_remove(struct platform_device *pdev)
 		unregister_syscore_ops(&tegra_wdt_t18x_syscore_ops);
 
 	debugfs_remove_recursive(twdt_t18x->root);
-
-	return 0;
 }
 
 #ifdef CONFIG_PM_SLEEP

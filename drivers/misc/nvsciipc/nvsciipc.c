@@ -799,7 +799,7 @@ static void nvsciipc_cleanup(struct nvsciipc *ctx)
 	ctx = NULL;
 }
 
-static int nvsciipc_remove(struct platform_device *pdev)
+static void nvsciipc_remove(struct platform_device *pdev)
 {
 	struct nvsciipc *ctx = NULL;
 
@@ -818,8 +818,6 @@ static int nvsciipc_remove(struct platform_device *pdev)
 
 exit:
 	INFO("Unloaded module\n");
-
-	return 0;
 }
 
 static struct platform_driver nvsciipc_driver = {

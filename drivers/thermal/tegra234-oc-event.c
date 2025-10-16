@@ -196,15 +196,14 @@ put_bpmp:
 	return err;
 }
 
-static int tegra234_oc_event_remove(struct platform_device *pdev)
+static void tegra234_oc_event_remove(struct platform_device *pdev)
 {
 	struct tegra234_oc_event *tegra234_oc = platform_get_drvdata(pdev);
 
 	if (!tegra234_oc)
-		return -EINVAL;
+		return;
 
 	tegra_bpmp_put(tegra234_oc->bpmp);
-	return 0;
 }
 
 static struct platform_driver tegra234_oc_event_driver = {

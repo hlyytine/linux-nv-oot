@@ -494,7 +494,7 @@ int nvmap_dma_declare_coherent_memory(struct device *dev, phys_addr_t phys_addr,
 			u32 granule_size);
 #endif
 int nvmap_probe(struct platform_device *pdev);
-int nvmap_remove(struct platform_device *pdev);
+void nvmap_remove(struct platform_device *pdev);
 int nvmap_init(struct platform_device *pdev);
 
 int nvmap_create_carveout(const struct nvmap_platform_carveout *co);

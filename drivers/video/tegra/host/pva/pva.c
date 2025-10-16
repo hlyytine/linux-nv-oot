@@ -1487,7 +1487,7 @@ err_get_pdata:
 	return err;
 }
 
-static int __exit pva_remove(struct platform_device *pdev)
+static void __exit pva_remove(struct platform_device *pdev)
 {
 	struct nvhost_device_data *pdata = platform_get_drvdata(pdev);
 	struct pva *pva = pdata->private_data;
@@ -1530,8 +1530,6 @@ static int __exit pva_remove(struct platform_device *pdev)
 	mutex_destroy(&pva->ccq_mutex);
 	mutex_destroy(&pva->pva_auth.allow_list_lock);
 	mutex_destroy(&pva->pva_auth_sys.allow_list_lock);
-
-	return 0;
 }
 
 #ifdef CONFIG_PM

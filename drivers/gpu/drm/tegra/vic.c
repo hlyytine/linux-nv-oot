@@ -800,7 +800,7 @@ exit_falcon:
 	return err;
 }
 
-static int vic_remove(struct platform_device *pdev)
+static void vic_remove(struct platform_device *pdev)
 {
 	struct vic *vic = platform_get_drvdata(pdev);
 
@@ -816,8 +816,6 @@ static int vic_remove(struct platform_device *pdev)
 	host1x_client_unregister(&vic->client.base);
 
 	falcon_exit(&vic->falcon);
-
-	return 0;
 }
 
 static const struct dev_pm_ops vic_pm_ops = {

@@ -242,13 +242,11 @@ undo_register_component:
 	return ret;
 }
 
-static int tegra_virt_machine_driver_remove(struct platform_device *pdev)
+static void tegra_virt_machine_driver_remove(struct platform_device *pdev)
 {
 	struct snd_soc_card *card = platform_get_drvdata(pdev);
 
 	snd_soc_unregister_card(card);
-
-	return 0;
 }
 
 static struct platform_driver tegra_virt_machine_driver = {

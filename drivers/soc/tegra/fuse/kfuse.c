@@ -259,7 +259,7 @@ static int tegra_kfuse_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra_kfuse_remove(struct platform_device *pdev)
+static void tegra_kfuse_remove(struct platform_device *pdev)
 {
 	struct tegra_kfuse *kfuse = platform_get_drvdata(pdev);
 	int ret = 0;
@@ -271,13 +271,11 @@ static int tegra_kfuse_remove(struct platform_device *pdev)
 	mutex_unlock(&kfuse->cg_refcount_mutex);
 
 	if (ret < 0)
-		return ret;
+		return;
 
 	global_kfuse = NULL;
 
 	dev_info(&pdev->dev, "removed\n");
-
-	return 0;
 }
 
 static const struct tegra_kfuse_soc tegra124_kfuse_soc = {

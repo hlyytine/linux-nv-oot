@@ -990,18 +990,16 @@ static int tegra_hv_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra_hv_remove(struct platform_device *pdev)
+static void tegra_hv_remove(struct platform_device *pdev)
 {
 	if (!is_tegra_hypervisor_mode())
-		return 0;
+		return;
 
 	tegra_hv_cleanup(tegra_hv_data);
 	kfree(tegra_hv_data);
 	tegra_hv_data = NULL;
 
 	INFO("tegra_hv driver removed successfully\n");
-
-	return 0;
 }
 
 static const struct of_device_id tegra_hv_match[] = {

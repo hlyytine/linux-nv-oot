@@ -5162,7 +5162,7 @@ static void tegra_hv_vse_safety_shutdown(struct platform_device *pdev)
 	}
 }
 
-static int tegra_hv_vse_safety_remove(struct platform_device *pdev)
+static void tegra_hv_vse_safety_remove(struct platform_device *pdev)
 {
 	int i;
 
@@ -5170,8 +5170,6 @@ static int tegra_hv_vse_safety_remove(struct platform_device *pdev)
 
 	for (i = 0; i < ARRAY_SIZE(sha_algs); i++)
 		crypto_unregister_ahash(&sha_algs[i]);
-
-	return 0;
 }
 
 #if defined(CONFIG_PM)

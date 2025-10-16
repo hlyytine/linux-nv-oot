@@ -96,14 +96,12 @@ static int tegra_aon_ivc_echo_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int tegra_aon_ivc_echo_remove(struct platform_device *pdev)
+static void tegra_aon_ivc_echo_remove(struct platform_device *pdev)
 {
 	struct tegra_aon_ivc_echo_data *drvdata = dev_get_drvdata(&pdev->dev);
 
 	device_remove_file(&pdev->dev, &dev_attr_data_channel);
 	mbox_free_channel(drvdata->mbox);
-
-	return 0;
 }
 
 static const struct of_device_id tegra_aon_ivc_echo_match[] = {
