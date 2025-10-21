@@ -1786,5 +1786,5 @@ static void __exit nvpva_exit(void)
 module_exit(nvpva_exit);
 #endif
 
-MODULE_IMPORT_NS(DMA_BUF);
+MODULE_IMPORT_NS("DMA_BUF");
 MODULE_LICENSE("GPL v2");
