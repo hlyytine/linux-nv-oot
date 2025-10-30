@@ -112,7 +112,7 @@ fail:
 	return ret;
 }
 
-int nvmap_ioctl_alloc(struct file *filp, void __user *arg)
+int nvmap_ioctl_alloc(struct file *filp, unsigned int cmd, void __user *arg)
 {
 	struct nvmap_alloc_handle op;
 	struct nvmap_client *client = filp->private_data;
@@ -122,8 +122,20 @@ int nvmap_ioctl_alloc(struct file *filp, void __user *arg)
 	int err;
 	long dmabuf_ref = 0;
 	size_t old_size;
+	size_t copy_size;
 
-	if (copy_from_user(&op, arg, sizeof(op)))
+	/* Handle both old (20-byte, rel-36) and new (28-byte, rel-38+) struct sizes.
+	 * Old nvgpu from rel-36 uses NVMAP_IOC_ALLOC with 20-byte struct (no 'va' field).
+	 * New nvgpu from rel-38+ uses NVMAP_IOC_ALLOC with 28-byte struct (with 'va' field).
+	 * Zero-initialize to ensure 'va' field is 0 for old clients.
+	 */
+	memset(&op, 0, sizeof(op));
+	copy_size = _IOC_SIZE(cmd);
+
+	if (copy_size > sizeof(op))
+		return -EINVAL;
+
+	if (copy_from_user(&op, arg, copy_size))
 		return -EFAULT;
 
 	if (op.align & (op.align - 1))

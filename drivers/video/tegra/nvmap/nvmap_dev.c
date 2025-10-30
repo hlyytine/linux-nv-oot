@@ -394,7 +394,8 @@ static long nvmap_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		break;
 
 	case NVMAP_IOC_ALLOC:
-		err = nvmap_ioctl_alloc(filp, uarg);
+	case 0x40144e03:  /* NVMAP_IOC_ALLOC (rel-36 compat, 20-byte struct) */
+		err = nvmap_ioctl_alloc(filp, cmd, uarg);
 		break;
 
 	case NVMAP_IOC_ALLOC_IVM:
