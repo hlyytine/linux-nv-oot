@@ -16,7 +16,7 @@ int nvmap_ioctl_get_ivcid(struct file *filp, void __user *arg);
 
 int nvmap_ioctl_getfd(struct file *filp, void __user *arg);
 
-int nvmap_ioctl_alloc(struct file *filp, void __user *arg);
+int nvmap_ioctl_alloc(struct file *filp, unsigned int cmd, void __user *arg);
 
 int nvmap_ioctl_alloc_ivm(struct file *filp, void __user *arg);
 
