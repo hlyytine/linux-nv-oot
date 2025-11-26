@@ -41,6 +41,13 @@
 /* #define HCI_VERSION_CODE KERNEL_VERSION(3, 14, 41) */
 #define HCI_VERSION_CODE LINUX_VERSION_CODE
 
+/* Kernel 6.16+ renamed hci_dev->quirks to hci_dev->quirk_flags and added hci_set_quirk() */
+#if HCI_VERSION_CODE >= KERNEL_VERSION(6, 16, 0)
+#define rtk_set_quirk(hdev, nr) hci_set_quirk(hdev, nr)
+#else
+#define rtk_set_quirk(hdev, nr) set_bit((nr), &(hdev)->quirks)
+#endif
+
 #define CONFIG_BTCOEX			1
 #define CONFIG_BTUSB_WAKEUP_HOST	0
 
