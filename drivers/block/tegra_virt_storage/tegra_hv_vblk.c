@@ -1214,11 +1214,11 @@ static void vblk_release(struct gendisk *disk, fmode_t mode)
  *   - Runtime: Yes
  *   - De-Init: No
  */
-static int vblk_getgeo(struct block_device *device, struct hd_geometry *geo)
+static int vblk_getgeo(struct gendisk *disk, struct hd_geometry *geo)
 {
 	geo->heads = VS_LOG_HEADS;
 	geo->sectors = VS_LOG_SECTS;
-	geo->cylinders = get_capacity(device->bd_disk) /
+	geo->cylinders = get_capacity(disk) /
 		(geo->heads * geo->sectors);
 
 	return 0;
